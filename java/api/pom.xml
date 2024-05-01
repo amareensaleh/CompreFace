@@ -18,6 +18,14 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.petra.graphqlify</groupId>
+            <artifactId>graphqlify-java-processor-engine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.petra.graphqlify</groupId>
+            <artifactId>graphqlify-java-springweb-plugin</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.exadel</groupId>
             <artifactId>frs-common-app</artifactId>
             <version>${parent.version}</version>

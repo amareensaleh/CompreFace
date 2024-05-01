@@ -58,10 +58,23 @@
 
         <nd4j.classifier>linux-x86_64</nd4j.classifier>
         <docker.image.prefix>frs</docker.image.prefix>
+        <graphqlify.version>1.0.0-SNAPSHOT</graphqlify.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.petra.graphqlify</groupId>
+                <artifactId>graphqlify-java-processor-engine</artifactId>
+                <version>${graphqlify.version}</version>
+                <optional>true</optional>
+            </dependency>
+            <dependency>
+                <groupId>com.petra.graphqlify</groupId>
+                <artifactId>graphqlify-java-springweb-plugin</artifactId>
+                <version>${graphqlify.version}</version>
+                <optional>true</optional>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -215,23 +228,24 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <annotationProcessorPaths>
-                            <path>
-                                <groupId>org.projectlombok</groupId>
-                                <artifactId>lombok</artifactId>
-                                <version>${lombok.version}</version>
-                            </path>
-                            <path>
-                                <groupId>org.mapstruct</groupId>
-                                <artifactId>mapstruct-processor</artifactId>
-                                <version>${mapstruct.version}</version>
-                            </path>
-                            <path>
-                                <groupId>org.springframework.boot</groupId>
-                                <artifactId>spring-boot-configuration-processor</artifactId>
-                                <version>${spring.boot.version}</version>
-                            </path>
-                        </annotationProcessorPaths>
+                        <showWarnings>true</showWarnings>
+<!--                        <annotationProcessorPaths>-->
+<!--                            <path>-->
+<!--                                <groupId>org.projectlombok</groupId>-->
+<!--                                <artifactId>lombok</artifactId>-->
+<!--                                <version>${lombok.version}</version>-->
+<!--                            </path>-->
+<!--                            <path>-->
+<!--                                <groupId>org.mapstruct</groupId>-->
+<!--                                <artifactId>mapstruct-processor</artifactId>-->
+<!--                                <version>${mapstruct.version}</version>-->
+<!--                            </path>-->
+<!--                            <path>-->
+<!--                                <groupId>org.springframework.boot</groupId>-->
+<!--                                <artifactId>spring-boot-configuration-processor</artifactId>-->
+<!--                                <version>${spring.boot.version}</version>-->
+<!--                            </path>-->
+<!--                        </annotationProcessorPaths>-->
                         <compilerArgs>
                             <compilerArg>
                                 -Amapstruct.defaultComponentModel=spring
