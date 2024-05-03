@@ -22,6 +22,7 @@ import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT;
 import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT_DESC;
 import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT_NAME_IS_EMPTY;
 import static com.exadel.frs.core.trainservice.system.global.Constants.X_FRS_API_KEY_HEADER;
+import com.graphqlify.annotation.GraphQLType;
 import static org.springframework.http.HttpStatus.CREATED;
 import com.exadel.frs.commonservice.entity.Embedding;
 import com.exadel.frs.commonservice.entity.Img;
@@ -175,7 +176,7 @@ public class EmbeddingController {
 
     @WriteEndpoint
     @DeleteMapping("/faces")
-    public Map<String, Object> removeAllSubjectEmbeddings(
+    public Map<String, Integer> removeAllSubjectEmbeddings(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(name = X_FRS_API_KEY_HEADER)
             final String apiKey,
@@ -266,6 +267,7 @@ public class EmbeddingController {
     }
 
     @PostMapping(value = "/faces/{embeddingId}/verify", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GraphQLType(name = "embeddingIdRecognizeBase64")
     public VerificationResult recognizeBase64(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(X_FRS_API_KEY_HEADER)
@@ -310,6 +312,7 @@ public class EmbeddingController {
     }
 
     @PostMapping(value = "/embeddings/faces/{imageId}/verify", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GraphQLType(name = "ImageIdRecognizeEmbeddings")
     public EmbeddingsVerificationProcessResponse recognizeEmbeddings(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(X_FRS_API_KEY_HEADER)

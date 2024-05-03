@@ -18,6 +18,7 @@ package com.exadel.frs.controller;
 
 import static com.exadel.frs.system.global.Constants.ADMIN;
 import static com.exadel.frs.system.global.Constants.GUID_EXAMPLE;
+import com.graphqlify.annotation.GraphQLType;
 import static org.springframework.http.HttpStatus.CREATED;
 import com.exadel.frs.commonservice.entity.Model;
 import com.exadel.frs.commonservice.projection.ModelStatisticProjection;
@@ -152,6 +153,7 @@ public class ModelController {
 
     @PutMapping("/model/{guid}/apikey")
     @ApiOperation(value = "Generate new api-key for model")
+    @GraphQLType(name = "regenerateModelApiKey")
     public ModelResponseDto regenerateApiKey(
             @ApiParam(value = "GUID of application", required = true, example = GUID_EXAMPLE)
             @PathVariable

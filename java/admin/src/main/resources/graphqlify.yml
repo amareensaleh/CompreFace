@@ -1,0 +1,8 @@
+
+failure:
+  mode: "fail_safe"
+
+input:
+  ignore:
+    types:
+      - java.security.Principal

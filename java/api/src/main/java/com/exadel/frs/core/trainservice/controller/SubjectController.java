@@ -5,6 +5,7 @@ import static com.exadel.frs.core.trainservice.system.global.Constants.API_V1;
 import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT_DESC;
 import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT_NAME_IS_EMPTY;
 import static com.exadel.frs.core.trainservice.system.global.Constants.X_FRS_API_KEY_HEADER;
+import java.util.Collection;
 import static org.springframework.http.HttpStatus.CREATED;
 import com.exadel.frs.core.trainservice.dto.SubjectDto;
 import com.exadel.frs.core.trainservice.service.SubjectService;
@@ -48,7 +49,7 @@ public class SubjectController {
     }
 
     @GetMapping
-    public Map<String, Object> listSubjects(
+    public Map<String, Collection<String>> listSubjects(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(X_FRS_API_KEY_HEADER)
             final String apiKey
@@ -60,7 +61,7 @@ public class SubjectController {
     }
 
     @PutMapping("/{subject}")
-    public Map<String, Object> renameSubject(
+    public Map<String, Boolean> renameSubject(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(X_FRS_API_KEY_HEADER)
             final String apiKey,
@@ -79,7 +80,7 @@ public class SubjectController {
     }
 
     @DeleteMapping("/{subject}")
-    public Map<String, Object> deleteSubject(
+    public Map<String, String> deleteSubject(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(X_FRS_API_KEY_HEADER)
             final String apiKey,
@@ -98,7 +99,7 @@ public class SubjectController {
     }
 
     @DeleteMapping
-    public Map<String, Object> deleteSubjects(
+    public Map<String, Integer> deleteSubjects(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(X_FRS_API_KEY_HEADER)
             final String apiKey

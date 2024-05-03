@@ -1,0 +1,9 @@
+
+
+failure:
+  mode: "fail_safe"
+
+input:
+  interfaces:
+    map:
+      "org.springframework.web.multipart.MultipartFile": "com.exadel.frs.core.trainservice.util.MultipartFileData"
