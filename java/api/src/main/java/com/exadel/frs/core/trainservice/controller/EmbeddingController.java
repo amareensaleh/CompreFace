@@ -146,6 +146,7 @@ public class EmbeddingController {
 
     @ResponseBody
     @GetMapping(value = "/faces/{embeddingId}/img", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+    @GraphQLType(name = "faceDownloadImg")
     public byte[] downloadImg(HttpServletResponse response,
                               @ApiParam(value = API_KEY_DESC, required = true)
                               @RequestHeader(name = X_FRS_API_KEY_HEADER)
