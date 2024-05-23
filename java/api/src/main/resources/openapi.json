@@ -1,0 +1,2629 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "basic-error-controller",
+      "description": "Basic Error Controller"
+    },
+    {
+      "name": "config-controller",
+      "description": "Config Controller"
+    },
+    {
+      "name": "consistence-controller",
+      "description": "Consistence Controller"
+    },
+    {
+      "name": "detection-controller",
+      "description": "Detection Controller"
+    },
+    {
+      "name": "embedding-controller",
+      "description": "Embedding Controller"
+    },
+    {
+      "name": "migrate-controller",
+      "description": "Migrate Controller"
+    },
+    {
+      "name": "operation-handler",
+      "description": "Operation Handler"
+    },
+    {
+      "name": "recognize-controller",
+      "description": "Recognize Controller"
+    },
+    {
+      "name": "static-controller",
+      "description": "Static Controller"
+    },
+    {
+      "name": "subject-controller",
+      "description": "Subject Controller"
+    },
+    {
+      "name": "verify-controller",
+      "description": "Verify Controller"
+    },
+    {
+      "name": "web-mvc-links-handler",
+      "description": "Web Mvc Links Handler"
+    }
+  ],
+  "paths": {
+    "/actuator": {
+      "get": {
+        "tags": [
+          "web-mvc-links-handler"
+        ],
+        "summary": "links",
+        "operationId": "linksUsingGET",
+        "produces": [
+          "application/vnd.spring-boot.actuator.v3+json",
+          "application/json",
+          "application/vnd.spring-boot.actuator.v2+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object",
+                "additionalProperties": {
+                  "$ref": "#/definitions/Link"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/actuator/health": {
+      "get": {
+        "tags": [
+          "operation-handler"
+        ],
+        "summary": "handle",
+        "operationId": "handleUsingGET_1",
+        "produces": [
+          "application/vnd.spring-boot.actuator.v3+json",
+          "application/json",
+          "application/vnd.spring-boot.actuator.v2+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/actuator/health/**": {
+      "get": {
+        "tags": [
+          "operation-handler"
+        ],
+        "summary": "handle",
+        "operationId": "handleUsingGET",
+        "produces": [
+          "application/vnd.spring-boot.actuator.v3+json",
+          "application/json",
+          "application/vnd.spring-boot.actuator.v2+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/config": {
+      "get": {
+        "tags": [
+          "config-controller"
+        ],
+        "summary": "Returns configuration properties of the application",
+        "operationId": "getConfigUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConfigDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/consistence/status": {
+      "get": {
+        "tags": [
+          "consistence-controller"
+        ],
+        "summary": "getCheckDemo",
+        "operationId": "getCheckDemoUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/VersionConsistenceDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/detection/detect": {
+      "post": {
+        "tags": [
+          "detection-controller"
+        ],
+        "summary": "detectBase64",
+        "operationId": "detectBase64UsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "det_prob_threshold",
+            "in": "query",
+            "description": "The minimal percent confidence that found face is actually a face.",
+            "required": false,
+            "type": "number",
+            "format": "double",
+            "allowEmptyValue": false,
+            "x-example": 1.0
+          },
+          {
+            "name": "face_plugins",
+            "in": "query",
+            "description": "Comma-separated types of face plugins. Empty value - face plugins disabled, returns only bounding boxes",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of faces to be recognized",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32",
+            "allowEmptyValue": false,
+            "x-example": 1
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Base64File"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Special parameter to show execution_time and plugin_version fields. Empty value - both fields eliminated, true - both fields included",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+            "allowEmptyValue": false,
+            "x-example": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FacesDetectionResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/migrate": {
+      "post": {
+        "tags": [
+          "migrate-controller"
+        ],
+        "summary": "migrate",
+        "operationId": "migrateUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/embeddings/faces/{imageId}/verify": {
+      "post": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "recognizeEmbeddings",
+        "operationId": "recognizeEmbeddingsUsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "imageId",
+            "in": "path",
+            "description": "Image Id from collection to compare with face.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "in": "body",
+            "name": "recognitionRequest",
+            "description": "recognitionRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmbeddingsRecognitionRequest"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EmbeddingsVerificationProcessResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/embeddings/recognize": {
+      "post": {
+        "tags": [
+          "recognize-controller"
+        ],
+        "summary": "recognizeEmbeddings",
+        "operationId": "recognizeEmbeddingsUsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "prediction_count",
+            "in": "query",
+            "description": "Maximum number of predictions per faces",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "format": "int32",
+            "allowEmptyValue": false,
+            "x-example": 1
+          },
+          {
+            "in": "body",
+            "name": "recognitionRequest",
+            "description": "recognitionRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmbeddingsRecognitionRequest"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EmbeddingsRecognitionProcessResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/faces": {
+      "get": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "listEmbeddings",
+        "operationId": "listEmbeddingsUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          },
+          {
+            "name": "paged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.sorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sort.unsorted",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Person's name to whom the face belongs to.",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "unpaged",
+            "in": "query",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Faces"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "addEmbeddingBase64",
+        "operationId": "addEmbeddingBase64UsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "det_prob_threshold",
+            "in": "query",
+            "description": "The minimal percent confidence that found face is actually a face.",
+            "required": false,
+            "type": "number",
+            "format": "double",
+            "allowEmptyValue": false,
+            "x-example": 1.0
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Base64File"
+            }
+          },
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Person's name to whom the face belongs to.",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/EmbeddingDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "removeAllSubjectEmbeddings",
+        "operationId": "removeAllSubjectEmbeddingsUsingDELETE_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "query",
+            "description": "Person's name to whom the face belongs to.",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/faces/delete": {
+      "post": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "deleteEmbeddingsById",
+        "operationId": "deleteEmbeddingsByIdUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "embeddingIds",
+            "description": "List of image Ids from collection to compare with face",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uuid"
+              }
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmbeddingDto"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/faces/{embeddingId}": {
+      "delete": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "deleteEmbeddingById",
+        "operationId": "deleteEmbeddingByIdUsingDELETE_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "embeddingId",
+            "in": "path",
+            "description": "Image Id from collection to compare with face.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EmbeddingDto"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/faces/{embeddingId}/img": {
+      "get": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "downloadImg",
+        "operationId": "downloadImgUsingGET_2",
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "embeddingId",
+            "in": "path",
+            "description": "Image Id from collection to compare with face.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/faces/{embeddingId}/verify": {
+      "post": {
+        "tags": [
+          "embedding-controller"
+        ],
+        "summary": "recognizeBase64",
+        "operationId": "recognizeBase64UsingPOST_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "det_prob_threshold",
+            "in": "query",
+            "description": "The minimal percent confidence that found face is actually a face.",
+            "required": false,
+            "type": "number",
+            "format": "double",
+            "allowEmptyValue": false,
+            "x-example": 1.0
+          },
+          {
+            "name": "embeddingId",
+            "in": "path",
+            "description": "Image Id from collection to compare with face.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "face_plugins",
+            "in": "query",
+            "description": "Comma-separated types of face plugins. Empty value - face plugins disabled, returns only bounding boxes",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of faces to be recognized",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32",
+            "allowEmptyValue": false,
+            "x-example": 1
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Base64File"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Special parameter to show execution_time and plugin_version fields. Empty value - both fields eliminated, true - both fields included",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+            "allowEmptyValue": false,
+            "x-example": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/VerificationResult"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/recognize": {
+      "post": {
+        "tags": [
+          "recognize-controller"
+        ],
+        "summary": "recognizeBase64",
+        "operationId": "recognizeBase64UsingPOST_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "det_prob_threshold",
+            "in": "query",
+            "description": "The minimal percent confidence that found face is actually a face.",
+            "required": false,
+            "type": "number",
+            "format": "double",
+            "allowEmptyValue": false,
+            "x-example": 1.0
+          },
+          {
+            "name": "detect_faces",
+            "in": "query",
+            "description": "The parameter specifies whether to perform image detection or not",
+            "required": false,
+            "type": "boolean",
+            "default": true,
+            "allowEmptyValue": false
+          },
+          {
+            "name": "face_plugins",
+            "in": "query",
+            "description": "Comma-separated types of face plugins. Empty value - face plugins disabled, returns only bounding boxes",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of faces to be recognized",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32",
+            "allowEmptyValue": false,
+            "x-example": 1
+          },
+          {
+            "name": "prediction_count",
+            "in": "query",
+            "description": "Maximum number of predictions per faces",
+            "required": false,
+            "type": "integer",
+            "default": 1,
+            "format": "int32",
+            "allowEmptyValue": false,
+            "x-example": 1
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Base64File"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Special parameter to show execution_time and plugin_version fields. Empty value - both fields eliminated, true - both fields included",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+            "allowEmptyValue": false,
+            "x-example": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/FacesRecognitionResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/subjects": {
+      "get": {
+        "tags": [
+          "subject-controller"
+        ],
+        "summary": "listSubjects",
+        "operationId": "listSubjectsUsingGET_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "subject-controller"
+        ],
+        "summary": "createSubject",
+        "operationId": "createSubjectUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "subjectDto",
+            "description": "subjectDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubjectDto"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/SubjectDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "subject-controller"
+        ],
+        "summary": "deleteSubjects",
+        "operationId": "deleteSubjectsUsingDELETE_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "integer",
+                "format": "int32"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/recognition/subjects/{subject}": {
+      "put": {
+        "tags": [
+          "subject-controller"
+        ],
+        "summary": "renameSubject",
+        "operationId": "renameSubjectUsingPUT_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "path",
+            "description": "Person's name to whom the face belongs to.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "subjectDto",
+            "description": "subjectDto",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SubjectDto"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "boolean"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "subject-controller"
+        ],
+        "summary": "deleteSubject",
+        "operationId": "deleteSubjectUsingDELETE_1",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "subject",
+            "in": "path",
+            "description": "Person's name to whom the face belongs to.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/static/{apiKey}/images/{embeddingId}": {
+      "get": {
+        "tags": [
+          "static-controller"
+        ],
+        "summary": "downloadImg",
+        "operationId": "downloadImgUsingGET_3",
+        "produces": [
+          "application/octet-stream"
+        ],
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "path",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "embeddingId",
+            "in": "path",
+            "description": "Image Id from collection to compare with face.",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/verification/embeddings/verify": {
+      "post": {
+        "tags": [
+          "verify-controller"
+        ],
+        "summary": "verifyEmbeddings",
+        "operationId": "verifyEmbeddingsUsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "verificationRequest",
+            "description": "verificationRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/EmbeddingsVerificationRequest"
+            }
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/EmbeddingsVerificationProcessResponse"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/api/v1/verification/verify": {
+      "post": {
+        "tags": [
+          "verify-controller"
+        ],
+        "summary": "verifyBase64",
+        "operationId": "verifyBase64UsingPOST_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "det_prob_threshold",
+            "in": "query",
+            "description": "The minimal percent confidence that found face is actually a face.",
+            "required": false,
+            "type": "number",
+            "format": "double",
+            "allowEmptyValue": false,
+            "x-example": 1.0
+          },
+          {
+            "name": "face_plugins",
+            "in": "query",
+            "description": "Comma-separated types of face plugins. Empty value - face plugins disabled, returns only bounding boxes",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of faces to be recognized",
+            "required": false,
+            "type": "integer",
+            "default": 0,
+            "format": "int32",
+            "allowEmptyValue": false,
+            "x-example": 1
+          },
+          {
+            "in": "body",
+            "name": "request",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VerifySourceTargetRequest"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Special parameter to show execution_time and plugin_version fields. Empty value - both fields eliminated, true - both fields included",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+            "allowEmptyValue": false,
+            "x-example": false
+          },
+          {
+            "name": "x-api-key",
+            "in": "header",
+            "description": "Api key of application and model",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/VerifyFacesResponse"
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/error": {
+      "get": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "head": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingHEAD",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "options": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingOPTIONS",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      },
+      "patch": {
+        "tags": [
+          "basic-error-controller"
+        ],
+        "summary": "error",
+        "operationId": "errorUsingPATCH",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "object"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "definitions": {
+    "Base64File": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string"
+        }
+      },
+      "title": "Base64File"
+    },
+    "ConfigDto": {
+      "type": "object",
+      "properties": {
+        "clientMaxBodySize": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "clientMaxFileSize": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ConfigDto"
+    },
+    "EmbeddingDto": {
+      "type": "object",
+      "properties": {
+        "image_id": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        }
+      },
+      "title": "EmbeddingDto"
+    },
+    "EmbeddingRecognitionProcessResult": {
+      "type": "object",
+      "properties": {
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "similarities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EmbeddingSimilarityResult"
+          }
+        }
+      },
+      "title": "EmbeddingRecognitionProcessResult"
+    },
+    "EmbeddingSimilarityResult": {
+      "type": "object",
+      "properties": {
+        "similarity": {
+          "type": "number",
+          "format": "float"
+        },
+        "subject": {
+          "type": "string"
+        }
+      },
+      "title": "EmbeddingSimilarityResult"
+    },
+    "EmbeddingVerificationProcessResult": {
+      "type": "object",
+      "properties": {
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "similarity": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "title": "EmbeddingVerificationProcessResult"
+    },
+    "EmbeddingsRecognitionProcessResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EmbeddingRecognitionProcessResult"
+          }
+        }
+      },
+      "title": "EmbeddingsRecognitionProcessResponse"
+    },
+    "EmbeddingsRecognitionRequest": {
+      "type": "object",
+      "properties": {
+        "embeddings": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        }
+      },
+      "title": "EmbeddingsRecognitionRequest"
+    },
+    "EmbeddingsVerificationProcessResponse": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EmbeddingVerificationProcessResult"
+          }
+        }
+      },
+      "title": "EmbeddingsVerificationProcessResponse"
+    },
+    "EmbeddingsVerificationRequest": {
+      "type": "object",
+      "properties": {
+        "source": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        }
+      },
+      "title": "EmbeddingsVerificationRequest"
+    },
+    "ExecutionTimeDto": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "number",
+          "format": "double"
+        },
+        "calculator": {
+          "type": "number",
+          "format": "double"
+        },
+        "detector": {
+          "type": "number",
+          "format": "double"
+        },
+        "gender": {
+          "type": "number",
+          "format": "double"
+        },
+        "mask": {
+          "type": "number",
+          "format": "double"
+        },
+        "pose": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "ExecutionTimeDto"
+    },
+    "FaceMatch": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "$ref": "#/definitions/FacesAge"
+        },
+        "box": {
+          "$ref": "#/definitions/FacesBox"
+        },
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "execution_time": {
+          "$ref": "#/definitions/ExecutionTimeDto"
+        },
+        "gender": {
+          "$ref": "#/definitions/FacesGender"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "mask": {
+          "$ref": "#/definitions/FacesMask"
+        },
+        "pose": {
+          "$ref": "#/definitions/FacesPose"
+        },
+        "similarity": {
+          "type": "number",
+          "format": "float"
+        }
+      },
+      "title": "FaceMatch"
+    },
+    "FacePredictionResultDto": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "$ref": "#/definitions/FacesAgeDto"
+        },
+        "box": {
+          "$ref": "#/definitions/FacesBox"
+        },
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "execution_time": {
+          "$ref": "#/definitions/ExecutionTimeDto"
+        },
+        "gender": {
+          "$ref": "#/definitions/FacesGenderDto"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "mask": {
+          "$ref": "#/definitions/FacesMaskDto"
+        },
+        "pose": {
+          "$ref": "#/definitions/FacesPoseDto"
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FaceSimilarityDto"
+          }
+        }
+      },
+      "title": "FacePredictionResultDto"
+    },
+    "FaceSimilarityDto": {
+      "type": "object",
+      "properties": {
+        "similarity": {
+          "type": "number",
+          "format": "float"
+        },
+        "subject": {
+          "type": "string"
+        }
+      },
+      "title": "FaceSimilarityDto"
+    },
+    "FaceVerification": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "$ref": "#/definitions/FacesAge"
+        },
+        "box": {
+          "$ref": "#/definitions/FacesBox"
+        },
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "execution_time": {
+          "$ref": "#/definitions/ExecutionTimeDto"
+        },
+        "gender": {
+          "$ref": "#/definitions/FacesGender"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "mask": {
+          "$ref": "#/definitions/FacesMask"
+        },
+        "pose": {
+          "$ref": "#/definitions/FacesPose"
+        },
+        "similarity": {
+          "type": "number",
+          "format": "float"
+        },
+        "subject": {
+          "type": "string"
+        }
+      },
+      "title": "FaceVerification"
+    },
+    "Faces": {
+      "type": "object",
+      "properties": {
+        "faces": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/EmbeddingDto"
+          }
+        },
+        "page_number": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page_size": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "total_elements": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "total_pages": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "Faces"
+    },
+    "FacesAge": {
+      "type": "object",
+      "properties": {
+        "high": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "low": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "probability": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "FacesAge"
+    },
+    "FacesAgeDto": {
+      "type": "object",
+      "properties": {
+        "high": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "low": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "probability": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "FacesAgeDto"
+    },
+    "FacesBox": {
+      "type": "object",
+      "properties": {
+        "probability": {
+          "type": "number",
+          "format": "double"
+        },
+        "x_max": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "x_min": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y_max": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "y_min": {
+          "type": "integer",
+          "format": "int32"
+        }
+      },
+      "title": "FacesBox"
+    },
+    "FacesDetectionResponseDto": {
+      "type": "object",
+      "properties": {
+        "plugins_versions": {
+          "$ref": "#/definitions/PluginsVersionsDto"
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FindFacesResultDto"
+          }
+        }
+      },
+      "title": "FacesDetectionResponseDto"
+    },
+    "FacesGender": {
+      "type": "object",
+      "properties": {
+        "probability": {
+          "type": "number",
+          "format": "double"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "FacesGender"
+    },
+    "FacesGenderDto": {
+      "type": "object",
+      "properties": {
+        "probability": {
+          "type": "number",
+          "format": "double"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "FacesGenderDto"
+    },
+    "FacesMask": {
+      "type": "object",
+      "properties": {
+        "probability": {
+          "type": "number",
+          "format": "double"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "FacesMask"
+    },
+    "FacesMaskDto": {
+      "type": "object",
+      "properties": {
+        "probability": {
+          "type": "number",
+          "format": "double"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "FacesMaskDto"
+    },
+    "FacesPose": {
+      "type": "object",
+      "properties": {
+        "pitch": {
+          "type": "number",
+          "format": "double"
+        },
+        "roll": {
+          "type": "number",
+          "format": "double"
+        },
+        "yaw": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "FacesPose"
+    },
+    "FacesPoseDto": {
+      "type": "object",
+      "properties": {
+        "pitch": {
+          "type": "number",
+          "format": "double"
+        },
+        "roll": {
+          "type": "number",
+          "format": "double"
+        },
+        "yaw": {
+          "type": "number",
+          "format": "double"
+        }
+      },
+      "title": "FacesPoseDto"
+    },
+    "FacesRecognitionResponseDto": {
+      "type": "object",
+      "properties": {
+        "plugins_versions": {
+          "$ref": "#/definitions/PluginsVersionsDto"
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FacePredictionResultDto"
+          }
+        }
+      },
+      "title": "FacesRecognitionResponseDto"
+    },
+    "FindFacesResultDto": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "$ref": "#/definitions/FacesAgeDto"
+        },
+        "box": {
+          "$ref": "#/definitions/FacesBox"
+        },
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "execution_time": {
+          "$ref": "#/definitions/ExecutionTimeDto"
+        },
+        "gender": {
+          "$ref": "#/definitions/FacesGenderDto"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "mask": {
+          "$ref": "#/definitions/FacesMaskDto"
+        },
+        "pose": {
+          "$ref": "#/definitions/FacesPoseDto"
+        }
+      },
+      "title": "FindFacesResultDto"
+    },
+    "Link": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "type": "string"
+        },
+        "templated": {
+          "type": "boolean"
+        }
+      },
+      "title": "Link"
+    },
+    "Map«string,Link»": {
+      "type": "object",
+      "title": "Map«string,Link»",
+      "additionalProperties": {
+        "$ref": "#/definitions/Link"
+      }
+    },
+    "ModelAndView": {
+      "type": "object",
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        },
+        "model": {
+          "type": "object"
+        },
+        "modelMap": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          }
+        },
+        "reference": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "100 CONTINUE",
+            "101 SWITCHING_PROTOCOLS",
+            "102 PROCESSING",
+            "103 CHECKPOINT",
+            "200 OK",
+            "201 CREATED",
+            "202 ACCEPTED",
+            "203 NON_AUTHORITATIVE_INFORMATION",
+            "204 NO_CONTENT",
+            "205 RESET_CONTENT",
+            "206 PARTIAL_CONTENT",
+            "207 MULTI_STATUS",
+            "208 ALREADY_REPORTED",
+            "226 IM_USED",
+            "300 MULTIPLE_CHOICES",
+            "301 MOVED_PERMANENTLY",
+            "302 FOUND",
+            "302 MOVED_TEMPORARILY",
+            "303 SEE_OTHER",
+            "304 NOT_MODIFIED",
+            "305 USE_PROXY",
+            "307 TEMPORARY_REDIRECT",
+            "308 PERMANENT_REDIRECT",
+            "400 BAD_REQUEST",
+            "401 UNAUTHORIZED",
+            "402 PAYMENT_REQUIRED",
+            "403 FORBIDDEN",
+            "404 NOT_FOUND",
+            "405 METHOD_NOT_ALLOWED",
+            "406 NOT_ACCEPTABLE",
+            "407 PROXY_AUTHENTICATION_REQUIRED",
+            "408 REQUEST_TIMEOUT",
+            "409 CONFLICT",
+            "410 GONE",
+            "411 LENGTH_REQUIRED",
+            "412 PRECONDITION_FAILED",
+            "413 PAYLOAD_TOO_LARGE",
+            "413 REQUEST_ENTITY_TOO_LARGE",
+            "414 URI_TOO_LONG",
+            "414 REQUEST_URI_TOO_LONG",
+            "415 UNSUPPORTED_MEDIA_TYPE",
+            "416 REQUESTED_RANGE_NOT_SATISFIABLE",
+            "417 EXPECTATION_FAILED",
+            "418 I_AM_A_TEAPOT",
+            "419 INSUFFICIENT_SPACE_ON_RESOURCE",
+            "420 METHOD_FAILURE",
+            "421 DESTINATION_LOCKED",
+            "422 UNPROCESSABLE_ENTITY",
+            "423 LOCKED",
+            "424 FAILED_DEPENDENCY",
+            "425 TOO_EARLY",
+            "426 UPGRADE_REQUIRED",
+            "428 PRECONDITION_REQUIRED",
+            "429 TOO_MANY_REQUESTS",
+            "431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+            "451 UNAVAILABLE_FOR_LEGAL_REASONS",
+            "500 INTERNAL_SERVER_ERROR",
+            "501 NOT_IMPLEMENTED",
+            "502 BAD_GATEWAY",
+            "503 SERVICE_UNAVAILABLE",
+            "504 GATEWAY_TIMEOUT",
+            "505 HTTP_VERSION_NOT_SUPPORTED",
+            "506 VARIANT_ALSO_NEGOTIATES",
+            "507 INSUFFICIENT_STORAGE",
+            "508 LOOP_DETECTED",
+            "509 BANDWIDTH_LIMIT_EXCEEDED",
+            "510 NOT_EXTENDED",
+            "511 NETWORK_AUTHENTICATION_REQUIRED"
+          ]
+        },
+        "view": {
+          "$ref": "#/definitions/View"
+        },
+        "viewName": {
+          "type": "string"
+        }
+      },
+      "title": "ModelAndView"
+    },
+    "PluginsVersionsDto": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "calculator": {
+          "type": "string"
+        },
+        "detector": {
+          "type": "string"
+        },
+        "gender": {
+          "type": "string"
+        },
+        "mask": {
+          "type": "string"
+        },
+        "pose": {
+          "type": "string"
+        }
+      },
+      "title": "PluginsVersionsDto"
+    },
+    "SubjectDto": {
+      "type": "object",
+      "properties": {
+        "subject": {
+          "type": "string"
+        }
+      },
+      "title": "SubjectDto"
+    },
+    "VerificationResult": {
+      "type": "object",
+      "properties": {
+        "plugins_versions": {
+          "$ref": "#/definitions/PluginsVersionsDto"
+        },
+        "result": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FaceVerification"
+          }
+        }
+      },
+      "title": "VerificationResult"
+    },
+    "VerifyFacesResponse": {
+      "type": "object",
+      "properties": {
+        "face_matches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FaceMatch"
+          }
+        },
+        "plugins_versions": {
+          "$ref": "#/definitions/PluginsVersionsDto"
+        },
+        "source_image_face": {
+          "$ref": "#/definitions/VerifyFacesResultDto"
+        }
+      },
+      "title": "VerifyFacesResponse"
+    },
+    "VerifyFacesResultDto": {
+      "type": "object",
+      "properties": {
+        "age": {
+          "$ref": "#/definitions/FacesAge"
+        },
+        "box": {
+          "$ref": "#/definitions/FacesBox"
+        },
+        "embedding": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "execution_time": {
+          "$ref": "#/definitions/ExecutionTimeDto"
+        },
+        "gender": {
+          "$ref": "#/definitions/FacesGender"
+        },
+        "landmarks": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        },
+        "mask": {
+          "$ref": "#/definitions/FacesMask"
+        },
+        "pose": {
+          "$ref": "#/definitions/FacesPose"
+        }
+      },
+      "title": "VerifyFacesResultDto"
+    },
+    "VerifySourceTargetRequest": {
+      "type": "object",
+      "properties": {
+        "source_image": {
+          "type": "string"
+        },
+        "target_image": {
+          "type": "string"
+        }
+      },
+      "title": "VerifySourceTargetRequest"
+    },
+    "VersionConsistenceDto": {
+      "type": "object",
+      "properties": {
+        "dbIsInconsistent": {
+          "type": "boolean"
+        },
+        "demoFaceCollectionIsInconsistent": {
+          "type": "boolean"
+        },
+        "saveImagesToDB": {
+          "type": "boolean"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "NOT_READY"
+          ]
+        }
+      },
+      "title": "VersionConsistenceDto"
+    },
+    "View": {
+      "type": "object",
+      "properties": {
+        "contentType": {
+          "type": "string"
+        }
+      },
+      "title": "View"
+    }
+  }
+}
