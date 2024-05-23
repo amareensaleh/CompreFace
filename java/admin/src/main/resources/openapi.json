@@ -1,0 +1,2166 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "0.0.2-SNAPSHOT",
+    "title": "CompreFace - ADMIN"
+  },
+  "host": "localhost:8080",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "app-controller",
+      "description": "App Controller"
+    },
+    {
+      "name": "app-status-controller",
+      "description": "App Status Controller"
+    },
+    {
+      "name": "config-controller",
+      "description": "Config Controller"
+    },
+    {
+      "name": "model-controller",
+      "description": "Model Controller"
+    },
+    {
+      "name": "user-controller",
+      "description": "User Controller"
+    }
+  ],
+  "paths": {
+    "/admin/app": {
+      "post": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Create application",
+        "operationId": "createAppUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appCreateDto",
+            "description": "Application object that needs to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppCreateDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/AppResponseDto"
+            }
+          },
+          "400": {
+            "description": "Field name cannot be empty"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{appGuid}/model": {
+      "post": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Create model",
+        "operationId": "createModelUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "in": "body",
+            "name": "modelCreateDto",
+            "description": "Model object that needs to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModelCreateDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/ModelResponseDto"
+            }
+          },
+          "400": {
+            "description": "Field name cannot be empty | Application access type to model is not correct"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{appGuid}/model/{guid}": {
+      "get": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Get model",
+        "operationId": "getModelUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of model to return",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelResponseDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Clone model data",
+        "operationId": "cloneModelUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of model that needs to be cloned",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "in": "body",
+            "name": "modelCloneDto",
+            "description": "Model data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModelCloneDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Field name cannot be empty | Application access type to model is not correct"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Update model data",
+        "operationId": "updateModelUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of model that needs to be updated",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "in": "body",
+            "name": "modelUpdateDto",
+            "description": "Model data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ModelUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Field name cannot be empty | Application access type to model is not correct"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Delete model",
+        "operationId": "deleteModelUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the model that needs to be deleted",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{appGuid}/model/{guid}/apikey": {
+      "put": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Generate new api-key for model",
+        "operationId": "regenerateApiKeyUsingPUT_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the model which GUID needs to be regenerated",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ModelResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{appGuid}/model/{guid}/statistics": {
+      "get": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Get summarized by day statistics of a model for the last couple of months",
+        "operationId": "getSummarizedByDayModelStatisticsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of model",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModelStatisticProjection"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{appGuid}/models": {
+      "get": {
+        "tags": [
+          "model-controller"
+        ],
+        "summary": "Get all models in application",
+        "operationId": "getModelsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "appGuid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ModelResponseDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{guid}": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Get application",
+        "operationId": "getAppUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of application to return",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AppResponseDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      },
+      "put": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Update application",
+        "operationId": "updateAppUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "appUpdateDto",
+            "description": "Application data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AppUpdateDto"
+            }
+          },
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of application that needs to be updated",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AppResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Field name cannot be empty"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Delete application",
+        "operationId": "deleteAppUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the application that needs to be deleted",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{guid}/apikey": {
+      "put": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Generate new api-key for application",
+        "operationId": "regenerateApiKeyUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the application which api-key needs to be regenerated",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AppResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{guid}/assign-roles": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Get application roles, that can be assigned to other users",
+        "operationId": "getAppRolesToAssignUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OWNER",
+                  "ADMINISTRATOR",
+                  "USER"
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{guid}/invite": {
+      "post": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Invite user to application",
+        "operationId": "inviteUserUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "in": "body",
+            "name": "userInviteDto",
+            "description": "Application object that needs to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserInviteDto"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/UserRoleResponseDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{guid}/role": {
+      "put": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Update user application role",
+        "operationId": "updateUserAppRoleUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "in": "body",
+            "name": "userRoleUpdateDto",
+            "description": "User role data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRoleUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserRoleResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{guid}/roles": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Get users of application",
+        "operationId": "getAppUsersUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of application",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "Filter by first name, last name or email of user",
+            "required": false,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserRoleResponseDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/app/{guid}/user/{userGuid}": {
+      "delete": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Delete user from application",
+        "operationId": "deleteUserAppUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "description": "GUID of the application that needs to be deleted",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          },
+          {
+            "name": "userGuid",
+            "in": "path",
+            "description": "User guid for deleting from application",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/apps": {
+      "get": {
+        "tags": [
+          "app-controller"
+        ],
+        "summary": "Get all applications",
+        "operationId": "getAppsUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AppResponseDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/config": {
+      "get": {
+        "tags": [
+          "config-controller"
+        ],
+        "summary": "Returns configuration properties of the application",
+        "operationId": "getConfigUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/ConfigDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/status": {
+      "get": {
+        "tags": [
+          "app-status-controller"
+        ],
+        "summary": "Get status of application",
+        "operationId": "getAppStatusUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AppStatusResponseDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/autocomplete": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "User autocomplete by (email, first name or last name)",
+        "operationId": "autocompleteUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserAutocompleteDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/demo/model": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Get demo model apiKey if available",
+        "operationId": "getDemoModelUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/forgot-password": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Assigns/Reassigns a reset password token to a user and then sends the token to his email",
+        "operationId": "assignAndSendResetPasswordTokenUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "forgotPasswordDto",
+            "description": "An email of a user",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ForgotPasswordDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/global/assign-roles": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Get global roles, that can be assigned to other users",
+        "operationId": "getGlobalRolesToAssignUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OWNER",
+                  "ADMINISTRATOR",
+                  "USER"
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/global/role": {
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Update user global role",
+        "operationId": "updateUserGlobalRoleUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userRoleUpdateDto",
+            "description": "User role data",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserRoleUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserRoleResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/global/roles": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Get all global roles",
+        "operationId": "getGlobalRolesUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "OWNER",
+                  "ADMINISTRATOR",
+                  "USER"
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/me": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Get information about user, that logged in",
+        "operationId": "getUserUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserResponseDto"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/me/password": {
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Change user's password",
+        "operationId": "changePasswordUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "changePasswordDto",
+            "description": "Old and new passwords DTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ChangePasswordDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Incorrect old or not valid both old and new passwords"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/register": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Register new user",
+        "operationId": "createUserUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userCreateDto",
+            "description": "User object that needs to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserCreateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 Means user created, but not confirmed"
+          },
+          "201": {
+            "description": "201 means user created and enabled"
+          },
+          "400": {
+            "description": "Such username or email already registered | One or more of required fields are empty | Incorrect email format"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/registration/confirm": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Confirm user registration token",
+        "operationId": "confirmRegistrationUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/reset-password": {
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Resets a user's password to a new one",
+        "operationId": "resetPasswordUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "resetPasswordDto",
+            "description": "A new user password",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ResetPasswordDto"
+            }
+          },
+          {
+            "name": "token",
+            "in": "query",
+            "description": "A reset password token",
+            "required": true,
+            "type": "string",
+            "allowEmptyValue": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/roles": {
+      "get": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Get all users",
+        "operationId": "getUsersUsingGET",
+        "produces": [
+          "*/*"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserRoleResponseDto"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/update": {
+      "put": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Update user data",
+        "operationId": "updateUserUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "userUpdateDto",
+            "description": "User data that needs to be updated",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserUpdateDto"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/UserResponseDto"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Such username or email already registered"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    },
+    "/admin/user/{userGuid}": {
+      "delete": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "Delete user",
+        "operationId": "deleteUserUsingDELETE",
+        "produces": [
+          "*/*"
+        ],
+        "parameters": [
+          {
+            "name": "replacer",
+            "in": "query",
+            "description": "Replacer option to determine next owner of org/apps that the user own",
+            "required": false,
+            "type": "string",
+            "default": "deleter",
+            "allowEmptyValue": false,
+            "enum": [
+              "deleter",
+              "owner"
+            ]
+          },
+          {
+            "name": "userGuid",
+            "in": "path",
+            "description": "GUID of the user being deleted",
+            "required": true,
+            "type": "string",
+            "x-example": "3913717b-a40b-4d6f-acc4-a861aa612651"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "oauth2schema": [
+              "read write"
+            ]
+          }
+        ],
+        "deprecated": false
+      }
+    }
+  },
+  "securityDefinitions": {
+    "oauth2schema": {
+      "type": "oauth2",
+      "tokenUrl": "http://localhost:8080/admin/oauth/token",
+      "flow": "password",
+      "scopes": {
+        "read write ": "all"
+      }
+    }
+  },
+  "definitions": {
+    "AppCreateDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "AppCreateDto"
+    },
+    "AppOwnerDto": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "AppOwnerDto"
+    },
+    "AppResponseDto": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "$ref": "#/definitions/AppOwnerDto"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "title": "AppResponseDto"
+    },
+    "AppStatusResponseDto": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "OK",
+            "NOT_READY"
+          ]
+        }
+      },
+      "title": "AppStatusResponseDto"
+    },
+    "AppUpdateDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "AppUpdateDto"
+    },
+    "ChangePasswordDto": {
+      "type": "object",
+      "properties": {
+        "newPassword": {
+          "type": "string"
+        },
+        "oldPassword": {
+          "type": "string"
+        }
+      },
+      "title": "ChangePasswordDto"
+    },
+    "ConfigDto": {
+      "type": "object",
+      "properties": {
+        "mailServiceEnabled": {
+          "type": "boolean"
+        }
+      },
+      "title": "ConfigDto"
+    },
+    "ForgotPasswordDto": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      },
+      "title": "ForgotPasswordDto"
+    },
+    "ModelCloneDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ModelCloneDto"
+    },
+    "ModelCreateDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      },
+      "title": "ModelCreateDto"
+    },
+    "ModelResponseDto": {
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "id": {
+          "type": "string"
+        },
+        "imageCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "subjectCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "RECOGNITION",
+            "DETECTION",
+            "VERIFY"
+          ]
+        }
+      },
+      "title": "ModelResponseDto"
+    },
+    "ModelStatisticProjection": {
+      "type": "object",
+      "properties": {
+        "createdDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "requestCount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      },
+      "title": "ModelStatisticProjection"
+    },
+    "ModelUpdateDto": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ModelUpdateDto"
+    },
+    "ResetPasswordDto": {
+      "type": "object",
+      "properties": {
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "ResetPasswordDto"
+    },
+    "UserAutocompleteDto": {
+      "type": "object",
+      "properties": {
+        "length": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "query": {
+          "type": "string"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserResponseDto"
+          }
+        }
+      },
+      "title": "UserAutocompleteDto"
+    },
+    "UserCreateDto": {
+      "type": "object",
+      "properties": {
+        "allowStatistics": {
+          "type": "boolean"
+        },
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "isAllowStatistics": {
+          "type": "boolean"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "title": "UserCreateDto"
+    },
+    "UserInviteDto": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "userEmail": {
+          "type": "string"
+        }
+      },
+      "title": "UserInviteDto"
+    },
+    "UserResponseDto": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "UserResponseDto"
+    },
+    "UserRoleResponseDto": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "UserRoleResponseDto"
+    },
+    "UserRoleUpdateDto": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        }
+      },
+      "title": "UserRoleUpdateDto"
+    },
+    "UserUpdateDto": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      },
+      "title": "UserUpdateDto"
+    }
+  }
+}
