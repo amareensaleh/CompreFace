@@ -22,6 +22,7 @@ import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT;
 import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT_DESC;
 import static com.exadel.frs.core.trainservice.system.global.Constants.SUBJECT_NAME_IS_EMPTY;
 import static com.exadel.frs.core.trainservice.system.global.Constants.X_FRS_API_KEY_HEADER;
+import com.graphqlify.annotation.GraphQLListType;
 import com.graphqlify.annotation.GraphQLType;
 import static org.springframework.http.HttpStatus.CREATED;
 import com.exadel.frs.commonservice.entity.Embedding;
@@ -162,6 +163,7 @@ public class EmbeddingController {
     }
 
     @GetMapping("/faces")
+    @GraphQLListType(type = EmbeddingDto.class)
     public Faces listEmbeddings(
             @ApiParam(value = API_KEY_DESC, required = true)
             @RequestHeader(name = X_FRS_API_KEY_HEADER)
