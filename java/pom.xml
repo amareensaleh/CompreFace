@@ -65,7 +65,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.petra.graphqlify</groupId>
-                <artifactId>graphqlify-java-processor-engine</artifactId>
+                <artifactId>graphqlify-java-processor</artifactId>
                 <version>${graphqlify.version}</version>
                 <optional>true</optional>
             </dependency>
